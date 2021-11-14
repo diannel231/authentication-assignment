@@ -32,14 +32,10 @@ public class LoginControl extends HttpServlet {
 			String userName = request.getParameter("username");
 			String password = request.getParameter("password");
 			
-			new LoginBusiness().ValidateFields(userName, password);
-			
-			if(!new LoginBusiness().AuthenticateUser(userName, password)) {
-				
-			} else {
-				request.setAttribute("Username", request.getParameter("username"));
-				address = "/view/LoginSuccessView.jsp";
-			}
+			new LoginBusiness().ValidateAndAuthenticate(userName, password);
+
+			request.setAttribute("Username", request.getParameter("username"));
+			address = "/view/LoginSuccessView.jsp";
 
 		} catch (MessageException e) {
 			if (e.getMessage().equals("Username not informed.")) {

@@ -10,14 +10,8 @@ public class LoginDataAccess {
 
 	public Boolean verifyCredentials(User user) throws ClassNotFoundException, SQLException {
 
-		final String URL = "jdbc:postgresql://localhost:5432/authentication";
-
-		final String USER = "postgres";
-
-		final String PWD = "123";
-
-		Class.forName("org.postgresql.Driver");
-		Connection conection = DriverManager.getConnection(URL, USER, PWD);
+		
+		Connection conection = new ConnectionFactory().DBConnection();
 
 		final PreparedStatement stmt = conection.prepareStatement("SELECT * FROM users WHERE username=? and password=?");
 

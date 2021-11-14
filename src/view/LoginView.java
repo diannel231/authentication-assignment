@@ -93,14 +93,11 @@ public class LoginView extends JFrame implements ActionListener {
 				String userName = txtUserName.getText();
 				String password = txtPassword.getText();
 				
-				new LoginBusiness().ValidateFields(userName, password);
+				new LoginBusiness().ValidateAndAuthenticate(userName, password);
 				
-				if(!new LoginBusiness().AuthenticateUser(userName, password)) {
-					
-				} else {
-					new LoginSuccessView(txtUserName.getText());
-					dispose();
-				}
+				new LoginSuccessView(txtUserName.getText());
+				dispose();
+
 				
 			} catch (MessageException e) {
 				JOptionPane.showMessageDialog (null, e.getMessage());
